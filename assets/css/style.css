@@ -1,0 +1,48 @@
+html {
+    background-color: black;
+}
+header {
+    background-image: url(../images/spoopy.jpg);
+    background-size: cover; padding: 60px;
+    padding-bottom: 120px;
+    height: 150px;
+    border: 1px solid black;
+}
+h1 {
+    color: #660000;
+    font-size: 32px;
+    font-family: monospace;
+    font-weight: bold;
+}
+h2 {
+    margin-top: 100px;
+    color: #660000;
+    font-size: 28px;
+    font-family: monospace;
+    font-style: italic;
+}
+.underscore {
+    height: 150px;
+    width: 100%;
+    border: 3px solid white;
+    font-family: monospace;
+    color: white;
+    text-align: center;
+    font-size: 100px;
+}
+.wins {
+    height: 150px;
+    width: 100%;
+    border: 3px solid white;
+    font-family: monospace;
+    color: white;
+    text-align: center;
+}
+.losses {
+    height: 150px;
+    width: 100%;
+    border: 3px solid white;
+    font-family: monospace;
+    color: white;
+    text-align: center;
+}
