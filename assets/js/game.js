@@ -1,48 +1,106 @@
 // Creating an array of names
-var names = ["jacktheripper","jefferydahmer","johnwaynegacy","hhholmes","pedrolopez","tedbundy","edgein","charlesmanson","zodiac","dennisrader","garyridgway","richardramirez","aileenwuornos","myrahindley"];
+var names = ["jacktheripper", "jefferydahmer", "johnwaynegacy", "hhholmes", "pedrolopez", "tedbundy", "edgein", "charlesmanson", "zodiac", "dennisrader", "garyridgway", "richardramirez", "aileenwuornos", "myrahindley"];
 //generates random name from array also varibles
-var name = Math.floor(Math.random() * names.length);
-var choosenName = names[name]
+var name = ""
+var choosenName = ""
 var underScore = [];
 var rightName = [];
 var wrongName = [];
-//console.log (choosenName)
-
+var attempts = 6;
+var wins = 0;
+var losses = 0;
 //DOM manipulation 
-var docUnderscore = document.getElementsByClassName('underScore');
-
-
-
+var docUnderscore = document.querySelector('#underscore');
+//var docWins = document.getElementsByClassName('wins')
+var docWins = document.getElementById('wins');
+var docLosses = document.getElementById('losses');
 //creates underscores for letters of name
-var generateUnderscore = () => {
+var generateUnderscore = (choosenName) => {
     for (var i = 0; i < choosenName.length; i++) {
         underScore.push('_');
 
     }
+    console.log(underScore)
     return underScore;
 }
 
-console.log (generateUnderscore());
+function game() {
+    name = Math.floor(Math.random() * names.length)
+    choosenName = names[name]
+    underScore = [];
+    rightName = [];
+    wrongName = [];
+    attempts = 12;
+    docUnderscore.innerHTML = generateUnderscore(choosenName);
+    // clean the screen of the wrong letters??? 
+}
 
+game()
+
+//
 //logs the key pressed
 document.addEventListener('keypress', (event) => {
     var keycode = event.keyCode;
     var keyWord = String.fromCharCode(keycode);
     console.log(keyWord)
-//If answer is right    
-    if (choosenName.indexOf(keyWord) > -1 ) {
+    //If answer is right    
+    if (choosenName.indexOf(keyWord) > -1) {
         console.log(true);
         rightName.push(keyWord);
-        underScore[choosenName.indexOf(keyWord)] = keyWord;
-        console.log(underScore)
-        console.log(rightName);
+        for (var i = 0; i < choosenName.length; i++) {
+            if (choosenName[i] === keyWord) {
+                underScore[i] = keyWord;
+                docUnderscore.innerHTML = underScore;
+                console.log(underScore);
+                console.log(rightName);
+            }
+        }
         if (underScore.join('') == choosenName) {
-            alert("You win!")
+            alert("You win!");
+            wins++;
+            console.log("wins:", wins);
+            docWins.innerHTML = "Wins: " + wins;
+            alert(docWins.innerHTML);
+            // add to wins and show wins on the screen
+            for (var i = 0; i < choosenName.length; i++) {
+                if (choosenName === keyWord) {
+                    wins[i] = keyWord;
+                    console.log(wins);
+                }
+            }
+            // go to the next play
+            game();
+
         }
     } else {
-        wrongName.push(keyWord);
-        console.log(wrongName);
-        
+        // control attempts
+        attempts--
+        if (attempts === 0) {
+            // stop add to losses alert and show lose on the screen
+            // go to the next play 
+            alert("lost");
+            losses++; 
+            console.log("losses " + losses)
+            docLosses.innerHTML = "Losses: " + losses;
+                    alert(docLosses.innerHTML);
+            //console.log("losses:", losses);   
+           
+            game();
+        }
+        else {
+            wrongName.push(keyWord);
+            // show on the screen the wrong letters the user knows previous clicked
+            for (var i = 0; i < choosenName.length; i++) {
+                if (choosenName === keyWord) {
+                    wins[i] = keyWord;
+                    console.log(losses);
+                 
+                }
+            }
+            console.log(wrongName);
+
+        }
+
     }
 });
 
