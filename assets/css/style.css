@@ -2,7 +2,7 @@ html {
     background-color: black;
 }
 header {
-    background-image: url(../images/spoopy.jpg);
+    background-image: url("../images/spoopy.jpg");
     background-size: cover; padding: 60px;
     padding-bottom: 120px;
     height: 150px;
