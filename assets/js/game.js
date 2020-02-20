@@ -11,7 +11,6 @@ var wins = 0;
 var losses = 0;
 //DOM manipulation 
 var docUnderscore = document.querySelector('#underscore');
-//var docWins = document.getElementsByClassName('wins')
 var docWins = document.getElementById('wins');
 var docLosses = document.getElementById('losses');
 //creates underscores for letters of name
@@ -76,20 +75,18 @@ document.addEventListener('keypress', (event) => {
         // control attempts
         attempts--
         if (attempts === 0) {
-            // stop add to losses alert and show lose on the screen
-            // go to the next play 
+            //add to losses and show on screen
             alert("lost");
             losses++; 
             console.log("losses " + losses)
             docLosses.innerHTML = "Losses: " + losses;
                     alert(docLosses.innerHTML);
-            //console.log("losses:", losses);   
+            console.log("losses:", losses);   
            
             game();
         }
         else {
             wrongName.push(keyWord);
-            // show on the screen the wrong letters the user knows previous clicked
             for (var i = 0; i < choosenName.length; i++) {
                 if (choosenName === keyWord) {
                     wins[i] = keyWord;
